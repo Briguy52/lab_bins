@@ -1,10 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
+import java.util.function.Function;
 
 // small change
 
@@ -26,6 +28,15 @@ public class Bins {
 			results.add(input.nextInt());
 		}
 		return results;
+	}
+	
+	public void fitDisksAndPrint(Function< List<Integer>, List<Integer> > function, List<Integer> myList) {
+		List<Integer> transformedFunction = function.apply(myList);
+	}
+	
+	public List<Integer> myReverse (List<Integer> myList ) {
+		Collections.reverse(myList);
+		return myList;
 	}
 	
 	// Add to collection of disks
@@ -83,5 +94,9 @@ public class Bins {
 		// Decreasing order
 		Collections.sort(data, Collections.reverseOrder());
 		b.printStats(b.addDisk(data)); 
+		List<Integer> places = new ArrayList<Integer>(
+			    Arrays.asList(1, 2, 3));
+		b.fitDisksAndPrint((t -> t.stream().sorted().collect(Collections::toList) ), places);
+
 	}
 }
